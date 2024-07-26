@@ -8,6 +8,7 @@ import random
 class Team():
     def __init__(self):
         self.roster = []
+        self.isFull = False
 
 def menu():
     print("***************")
@@ -29,15 +30,33 @@ def player_List():
 
 def teamGenerator(playerList, playersPerTeam, numTeams):
     i = 0
+    teamsList = []
     while i <= numTeams:
-        emptyTeam = Team()
-        for player in playerList:
-            numbersTaken = []
-            randomIndex = random.randint(1, playersPerTeam)
-            if randomIndex not in numbersTaken:
-                empty
-        
+        newTeam = Team()
+        teamsList.append(newTeam)
+        i += 1
+    teamsFull = False
+    playerCount = 0
+    count = 0
+    while teamsFull == False:
+            chosenTeam = random.randint(0, numTeams)
+            if teamsList[chosenTeam].isFull:
+                if chosenTeam == 1:
+                    chosenTeam = 2
+                elif chosenTeam == 2:
+                    chosenTeam == 1    
             
+            teamsList[chosenTeam].roster.append(playerList[playerCount])
+            if len(teamsList[chosenTeam].roster) >= playersPerTeam:
+                teamsList[chosenTeam].isFull = True
+            for team in teamsList:
+                if team.isFull:
+                    count += 1
+            if count == len(teamsList):
+                teamsFull = True
+            playerCount += 1
+            for team in teamsList:
+                print(team.roster)
     
 
 def spotFinder(index, roster):
@@ -52,4 +71,6 @@ while True:
     elif option == 3:
         player_List()
     elif option == 4:
-        break
+        exit()
+
+
